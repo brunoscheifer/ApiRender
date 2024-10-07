@@ -11,8 +11,7 @@ const jwt = require('jsonwebtoken')
 const connectDB = async() => {
     try {
         await mongoose.connect(
-            `mongodb+srv://
-            ${process.env.DB_USER}:
+            `mongodb+srv://${process.env.DB_USER}:
             ${process.env.DB_PASSWORD}@
             ${process.env.CLUSTER_ADDRESS}/
             ${process.env.DB_NAME}`
@@ -87,7 +86,7 @@ app.get('/clima/:cidade', verifyJWT, async (req, res) => {
 console.log(req.userId + ' fez essa chamada') 
 const { cidade } = req.params
     try {
-        const resultado = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${process.env.API_KEY}&appid={API_KEY}&units=metric`)
+        const resultado = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${process.env.API_KEY}&units=metric`)
         res.status(200).send(resultado.data)
     } catch (error) {
         res.status(500).send(console.error(error));
