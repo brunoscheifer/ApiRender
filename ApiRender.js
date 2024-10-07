@@ -11,9 +11,7 @@ const jwt = require('jsonwebtoken')
 const connectDB = async() => {
     try {
         await mongoose.connect(
-            `mongodb+srv://${process.env.DB_USER}:
-            ${process.env.DB_PASSWORD}@
-            ${process.env.CLUSTER_ADDRESS}/
+            `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.CLUSTER_ADDRESS}/
             ${process.env.DB_NAME}`
         );
     
